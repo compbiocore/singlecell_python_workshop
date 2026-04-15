@@ -7,6 +7,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /workshop
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    # Required for Python packages with native extensions.
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
@@ -21,4 +22,4 @@ USER workshop
 
 EXPOSE 8888
 
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser"]
+CMD ["sh", "-c", "NOTEBOOK_FLAGS='--ip=0.0.0.0 --port=8888 --no-browser'; TOKEN=\"${JUPYTER_TOKEN:-$(python -c \"import secrets; print(secrets.token_urlsafe(24))\")}\"; echo \"Starting Jupyter Notebook with token authentication enabled.\"; jupyter notebook ${NOTEBOOK_FLAGS} --IdentityProvider.token=\"${TOKEN}\""]
