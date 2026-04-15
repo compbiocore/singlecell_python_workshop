@@ -10,11 +10,30 @@ This workshop introduces single-cell RNA-seq (scRNA-seq) analysis in Python usin
 
 ### Prerequisites
 
+> **Package setup:** For this workshop we will use a pre-built Apptainer image that already contains all required Python packages (Scanpy, scVI-tools, Harmony, Scrublet, gseapy, and more). No manual package installation is needed when launching via OpenOnDemand as described below.
+>
+> If you want to run the notebook **outside** the Apptainer image (e.g. on your own machine or on Oscar without the container), create a virtual environment and install the packages listed in `requirements.txt`:
+>
+> **On Oscar** (load a Python module first):
+> ```bash
+> module load python/3.12.4
+> python -m venv ~/venvs/singlecell
+> source ~/venvs/singlecell/bin/activate
+> pip install -r requirements.txt
+> ```
+> **On your local machine:**
+> ```bash
+> python -m venv singlecell
+> source singlecell/bin/activate          # Windows: singlecell\Scripts\activate
+> pip install -r requirements.txt
+> ```
+> See the [Oscar Python documentation](https://docs.ccv.brown.edu/oscar/software/python-installs) for more details on managing Python environments on Oscar.
+
 1. **Clone this repository** to your Oscar home or data directory:
    ```bash
    git clone https://github.com/compbiocore/singlecell_python_workshop.git
    ```
-2. **Obtain the Apptainer image** (`.sif` file) that contains all required Python packages. Save it to a location on Oscar (e.g. your home or `/oscar/data/` directory). Note the full path — you will need it in the steps below.
+2. **Obtain the Apptainer image** (`.sif` file) — see `notebooks/README.md` for the pull command. Save it to a location on Oscar (e.g. your home or `/oscar/data/` directory). Note the full path — you will need it in the steps below.
 
 ### Launching Jupyter via OpenOnDemand
 

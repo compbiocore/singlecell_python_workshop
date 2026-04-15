@@ -8,6 +8,10 @@ A pre-built Docker image is available that includes all required packages (Scanp
 ericsalomaki/scanpy_rapids_gpu_v3:notebooks26.02-cuda13-py3.13-traj
 ```
 
+**For this workshop, this image is the recommended way to run the notebook.** All packages are pre-installed, so no extra setup is required — just pull the image and launch via OpenOnDemand (see below).
+
+If you need to run outside the container, see the [venv setup instructions in the main README](../README.md#prerequisites).
+
 Pull it to Oscar with Apptainer (run this on an Oscar login or compute node):
 
 ```bash
