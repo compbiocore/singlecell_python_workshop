@@ -1,3 +1,11 @@
-# Copy over Jordan's container automation documentation here
+# Container automation assets
 
-This folder should contain your sample manifests, YAML control files, and Dockerfiles. A description of each file in the README section can sometimes be helpful.
+This directory contains the workshop Docker build context used by CI.
+
+- `Dockerfile`: minimal workshop image with Python 3.12, Jupyter Notebook, and all packages listed in `requirements.txt`.
+
+Build locally from the repository root:
+
+```bash
+docker build -f metadata/Dockerfile -t singlecell-python-workshop .
+```
