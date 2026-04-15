@@ -1,0 +1,8 @@
+scanpy
+scvi-tools
+harmonypy
+scrublet
+gseapy
+pyhere
+leidenalg
+python-igraph

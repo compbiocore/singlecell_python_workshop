@@ -1,80 +1,63 @@
-# CBC analysis template
+# Single-Cell RNA-seq Analysis in Python Workshop
 
-This is a template for our CBC analyses along with details on how to organize and structure files and descriptions so that they are easy to follow and consistent across the organization.
+This workshop introduces single-cell RNA-seq (scRNA-seq) analysis in Python using [Scanpy](https://scanpy.readthedocs.io/) and the classic PBMC 3k dataset. The workshop is delivered as a Jupyter notebook and is designed to be run on [Oscar](https://docs.ccv.brown.edu/oscar/) at Brown University via the OpenOnDemand portal.
 
-## Starting and working on a project
+## Notebook
 
- * Naming structure of a repo should be: PIfirstinitialPIlastname_projectname
- * After using this template to create the repo, create a Github project and associated issues that correspond to deliverables for the project
- * Create your Github secrets for the repo and build the necessary Singularity image to run the analyses (see below)
- * For each issue, create a branch and work off of the branch. You can reference issues with their number when making commits, as well as close them by typing `close #{issue_num}`. When an issue is resolved, make a pull request to merge the branch in. Reviewers are not necessary to merge, but can be helpful if you are working collaboratively on a project.
- * Describe the experimental design, required inputs and how to reproduce under the appropriate sections
- * Put any updates for your project into `UPDATES.md`.
- * Add any references to [RefChef](https://github.com/compbiocore/refchef).
+* `notebooks/scRNAseq_in_Python.ipynb` — Main workshop notebook covering quality control, normalization, dimensionality reduction, clustering, and visualization of scRNA-seq data.
 
-## Experimental Design and Goals
+## Running the notebook on Oscar via OpenOnDemand
 
-Details on the experimental design should go here, including how many groups, how many samples, which samples belong in which groups (or where you can find the sample metadata), the questions we are trying to answer with the design, etc.
+### Prerequisites
 
-## Folder organization and files
+> **Package setup:** For this workshop we will use a pre-built Apptainer image that already contains all required Python packages (Scanpy, scVI-tools, Harmony, Scrublet, gseapy, and more). No manual package installation is needed when launching via OpenOnDemand as described below.
+>
+> If you want to run the notebook **outside** the Apptainer image (e.g. on your own machine or on Oscar without the container), create a virtual environment and install the packages listed in `requirements.txt`:
+>
+> **On Oscar** (load a Python module first):
+> ```bash
+> module load python/3.12.4
+> python -m venv ~/venvs/singlecell
+> source ~/venvs/singlecell/bin/activate
+> pip install -r requirements.txt
+> ```
+> **On your local machine:**
+> ```bash
+> python -m venv singlecell
+> source singlecell/bin/activate          # Windows: singlecell\Scripts\activate
+> pip install -r requirements.txt
+> ```
+> See the [Oscar Python documentation](https://docs.ccv.brown.edu/oscar/software/python-installs) for more details on managing Python environments on Oscar.
 
-For more information see https://compbiocore-brown.slab.com/posts/data-organisation-for-analysis-repos-fdi2cddd. Our folder organization is as follows:
+1. **Clone this repository** to your Oscar home or data directory:
+   ```bash
+   git clone https://github.com/compbiocore/singlecell_python_workshop.git
+   ```
+2. **Obtain the Apptainer image** (`.sif` file) — see `notebooks/README.md` for the pull command. Save it to a location on Oscar (e.g. your home or `/oscar/data/` directory). Note the full path — you will need it in the steps below.
 
-### Folders that should be in the Github repository
+### Launching Jupyter via OpenOnDemand
 
- * **metadata:** files such as sample manifests, YAML control files, Dockerfiles
- * **scripts:** bioinformatics scripts for processing data.
-   * Following a logical structure for running the scripts, whether it is `00_create_env.sh`, `01_step1.sh`, etc or in chronological order is helpful for the next person to be able to follow
-   * It can also be helpful to have a `logs` folder in here to place all of your slurm log outputs.
- * **notebooks:** notebooks (Jupyter, Rmd, Quarto, etc) for working with the processed data
-   * Similary, a logical structure to follow for the notebooks is helpful
- * **results:** any end results that will be provided to the collaborator or manuscript
+1. Navigate to the Oscar OpenOnDemand portal:
+   [https://ood.ccv.brown.edu/pun/sys/dashboard/batch_connect/sys/bc_ccv_jupyter_singularity/session_contexts/new](https://ood.ccv.brown.edu/pun/sys/dashboard/batch_connect/sys/bc_ccv_jupyter_singularity/session_contexts/new)
 
-### Folders that should not be in the Github repository
+2. Under **Interactive Apps → Expert GUIs**, select **Jupyter Notebook for Apptainer Images**.
 
- * **data:** All raw data and large intermediate results that will not eventually be published or providing a starting point for reproducibility should go in here. There is a `.gitignore` that is set up to automatically ignore `.fastq`, `.fastq.gz`, `.sam`, `.bam`, and `data` among other miscellaneous files in there to try to avoid large data commit issues.
+3. Fill in the form fields as follows:
 
-### Describing your files
+   | Field | Value |
+   |---|---|
+   | **Path to apptainer image** | Full path to your `.sif` file, e.g. `/oscar/home/<username>/images/scanpy.sif` |
+   | **Extra Jupyter Args** | `--notebook-dir=<path/to/cloned/repo>`, e.g. `--notebook-dir=/oscar/home/<username>/singlecell_python_workshop` |
+   | **Partition** | Leave blank to use the default partition |
+   | **Number of cores** | `1` |
+   | **Memory per job** | `50G` |
+   | **Number of GPUs** | `0` (no GPU needed for this workshop) |
+   | **Condo account** | Leave blank unless you are using a condo |
+   | **Number of hours** | `2` (increase if you need more time) |
+   | **Additional Data Path** | Path to any extra data on Oscar you need accessible inside the container, e.g. `/oscar/data/<your-data-dir>` |
 
-For all folders, there should be a detailed description of what files are in there, whether in the folders README or on the main README. For example, if there is sample metadata, a reference, and a Dockerfile in **metadata**, 3 scripts in **scripts** and 1 figure in **results**, then you would want to set up something like this:
+4. Click **Launch**.
 
- * **metadata:** Contains `metadata.csv`, `Hg38.gff`, `Dockerfile`. For more details see the `README` in the folder.
- * **scripts:**
-   * `00_env.sh`: Creates environment to run bioinformatics scripts including pulling the Singularity image from our container registry.
-   * `01_fastqc.sh`: Runs FastQC on samples
-   * `02_figures.sh`: Runs analysis pipeline and produces `figure1` in **results**
- * **results:**
-   * `figure1.pdf`: Figure showing how great our results are
+5. Once the session starts (you will see it appear under **My Interactive Sessions**), click **Connect to Jupyter**.
 
-## How to reproduce
-
-Steps to reproduce the results should go here, including where the data can be found and what the inputs need to be, the order in which things should be run, etc.
-
-## Automated container building
-This template also comes with a pre-written github action workflow that will work out-of-the-box as is and automates the process of updating docker images for your analysis project, publishing these updates, and image versioning. To ensure this workflow works for your new repo, you will need to create **two github secrets** for your repo as follows:
-
-* **GH_USERNAME -** this is your guthub username
-* **GH_TOKEN -** this is a personal access token (PAT); make sure it has read, write, and delete permissions (if you need to make one and are unsure how, please see:  https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) 
-
-**IMPORTANT:** Before making edits to your repo, please make sure you have visited and read: https://app.gitbook.com/o/-LLCCXzgv2-pRyGi-QB2/s/-LpZv9ZetU-XF7BJyICY/container-automation-pipeline
-
-## Additional notes
-
-We have documented our overall process here: https://www.notion.so/brownccv/CBC-Analyses-Setup-457a3791a4fa432788812c96b1e864b1?pvs=4
-
-# CBC Project Information
-
-In theory this section should get filled out, and then some kind fo script will take this information and automatically combine them into a page that showcases our projects. It has not been implemented yet.
-
-```
-title:
-tags:
-analysts:
-git_repo_url:
-resources_used:
-summary:
-project_id:
-year:
-documentation_url:
-website_section:
-```
+6. In the Jupyter file browser, open `notebooks/scRNAseq_in_Python.ipynb` and run the cells.
