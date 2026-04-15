@@ -72,7 +72,7 @@ pip install pyhere
 
 ---
 
-* `02_scanpy_pbmc_basics_visualization.ipynb`: Workshop notebook for single-cell RNA-seq analysis using Scanpy and the PBMC3k dataset. Covers the full workflow from raw data loading through pathway enrichment. Key sections include:
+* `scRNAseq_in_Python.ipynb`: Workshop notebook for single-cell RNA-seq analysis using Scanpy and the PBMC3k dataset. Covers the full workflow from raw data loading through pathway enrichment. Key sections include:
   - AnnData data structure introduction
   - Raw data exploration (`sc.pl.highest_expr_genes`)
   - QC metrics, filtering, and doublet detection (Scrublet)
