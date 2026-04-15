@@ -1,8 +1,6 @@
-# Files
+# Notebooks
 
-Files for your notebooks (Rmd, Quarto, Jupyter, etc) should go here. Make sure to describe your files in the README here or in the main one.
-
-## Running on a cluster with Apptainer (recommended for GPU acceleration)
+## Apptainer image
 
 A pre-built Docker image is available that includes all required packages (Scanpy, scVI-tools, Harmony, CuPy for GPU, etc.):
 
@@ -10,41 +8,17 @@ A pre-built Docker image is available that includes all required packages (Scanp
 ericsalomaki/scanpy_rapids_gpu_v3:notebooks26.02-cuda13-py3.13-traj
 ```
 
-### Pull the image with Apptainer
+Pull it to Oscar with Apptainer (run this on an Oscar login or compute node):
 
 ```bash
-# Pull from Docker Hub and convert to a Singularity Image File
 apptainer pull scanpy_rapids_gpu_v3.sif docker://ericsalomaki/scanpy_rapids_gpu_v3:notebooks26.02-cuda13-py3.13-traj
 ```
 
-### Launch Jupyter inside the container
+Note the full path where you save the `.sif` file — you will need it when launching the session.
 
-```bash
-# Start an interactive session with GPU access (adjust bind path to your data directory)
-apptainer exec --nv \
-    -B /path/to/your/data:/path/to/your/data \
-    scanpy_rapids_gpu_v3.sif \
-    jupyter notebook --no-browser --port=8888 --ip=0.0.0.0
-```
+## Running the notebook on Oscar via OpenOnDemand
 
-### Submit via SLURM
-
-```bash
-#!/bin/bash
-#SBATCH --job-name=sc_workshop
-#SBATCH --partition=gpu
-#SBATCH --nodes=1
-#SBATCH --time=04:00:00
-#SBATCH --mem=32G
-#SBATCH --gres=gpu:1
-#SBATCH --output=sc_workshop_%j.log
-
-IMAGE=/path/to/scanpy_rapids_gpu_v3.sif
-BIND=/path/to/your/project:/path/to/your/project
-
-srun apptainer exec --nv -B $BIND $IMAGE \
-    jupyter notebook --no-browser --port=8888 --ip=0.0.0.0
-```
+See the [main README](../README.md) for step-by-step instructions on launching the notebook through the Oscar OpenOnDemand portal using the **Jupyter Notebook for Apptainer Images** app.
 
 > **Note on GPU-accelerated tools:** The notebooks are written to run on CPU by default (standard Scanpy calls). When run inside the container on a GPU node, `cuml` / `cudf` / `rapids` are available and can be used to accelerate PCA, UMAP, and kNN construction significantly for large datasets.
 
