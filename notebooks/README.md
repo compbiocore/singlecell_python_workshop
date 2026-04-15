@@ -10,7 +10,7 @@ ericsalomaki/scanpy_rapids_gpu_v3:notebooks26.02-cuda13-py3.13-traj
 
 **For this workshop, this image is the recommended way to run the notebook.** All packages are pre-installed, so no extra setup is required — just pull the image and launch via OpenOnDemand (see below).
 
-If you need to run outside the container, see the [venv setup instructions in the main README](../README.md#prerequisites).
+If you need to run outside the container, set up a virtual environment by following the [Oscar Python virtual environment guide](https://docs.ccv.brown.edu/oscar/software/python-installs), then install the packages from `requirements.txt`. See the [full venv setup instructions in the main README](../README.md#prerequisites) for the exact commands.
 
 Pull it to Oscar with Apptainer (run this on an Oscar login or compute node):
 
