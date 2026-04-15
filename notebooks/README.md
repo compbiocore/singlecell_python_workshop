@@ -24,7 +24,7 @@ pip install pyhere
 
 ---
 
-* `01_scanpy_pbmc_workshop.ipynb`: Initial starter workshop notebook for single-cell analysis in Scanpy using the PBMC3k tutorial dataset. Includes an outline plus runnable preprocessing, clustering, and marker-gene analysis steps. Paths managed via `pyhere`.
+* `01_scanpy_pbmc_workshop.ipynb`: Initial starter workshop notebook for single-cell analysis in Scanpy using the PBMC3k tutorial dataset. Includes an outline plus runnable preprocessing, clustering, and marker gene analysis steps. Paths managed via `pyhere`.
 
 * `02_scanpy_pbmc_basics_visualization.ipynb`: Comprehensive beginner workshop notebook for single-cell RNA-seq analysis using Scanpy and the PBMC3k dataset. Covers the full workflow from raw data loading through cell type annotation and data integration. Key sections include:
   - AnnData data structure introduction
