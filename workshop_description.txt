@@ -1,0 +1,3 @@
+This workshop introduces single-cell RNA-seq analysis in Python using Scanpy and the PBMC 3k dataset.
+Participants will work through quality control, normalization, dimensionality reduction, clustering, and visualization in a Jupyter notebook.
+The workshop is designed to run on Brown University's Oscar cluster through the OpenOnDemand portal.
