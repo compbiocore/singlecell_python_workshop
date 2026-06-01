@@ -15,7 +15,7 @@ If you need to run outside the container, set up a virtual environment by follow
 Pull it to Oscar with Apptainer (run this on an Oscar login or compute node):
 
 ```bash
-apptainer pull ccv_scrnaseq_2026.sif docker://ericsalomaki/scanpy_rapids_gpu_v3:notebooks26.02-cuda13-py3.13-traj
+apptainer pull ccv_scrnaseq_2026.sif docker://cowmoo/scanpy_scell_workshop:latest
 ```
 
 Note the full path where you save the `.sif` file — you will need it when launching the session.
