@@ -46,7 +46,7 @@ This workshop introduces single-cell RNA-seq (scRNA-seq) analysis in Python usin
 
    | Field | Value |
    |---|---|
-   | **Path to apptainer image** | Full path to your `.sif` file, e.g. `/oscar/home/<username>/images/scanpy.sif` |
+   | **Path to apptainer image** | Full path to the apptainer image file (`.sif`) file: `/oscar/data/shared/workshops/ccv_scrnaseq_2026.sif` |
    | **Extra Jupyter Args** | `--notebook-dir=<path/to/cloned/repo>`, e.g. `--notebook-dir=/oscar/home/<username>/singlecell_python_workshop` |
    | **Partition** | Leave blank to use the default partition |
    | **Number of cores** | `1` |
