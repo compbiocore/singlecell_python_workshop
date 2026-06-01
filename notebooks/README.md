@@ -2,10 +2,10 @@
 
 ## Apptainer image
 
-A pre-built Docker image is available that includes all required packages (Scanpy, scVI-tools, Harmony, CuPy for GPU, etc.):
+A pre-built Docker image is available on Oscar that includes all required packages (Scanpy, scVI-tools, Harmony, CuPy for GPU, etc.):
 
 ```
-ericsalomaki/scanpy_rapids_gpu_v3:notebooks26.02-cuda13-py3.13-traj
+/oscar/data/shared/workshops/ccv_scrnaseq_2026.sif
 ```
 
 **For this workshop, this image is the recommended way to run the notebook.** All packages are pre-installed, so no extra setup is required — just pull the image and launch via OpenOnDemand (see below).
@@ -15,7 +15,7 @@ If you need to run outside the container, set up a virtual environment by follow
 Pull it to Oscar with Apptainer (run this on an Oscar login or compute node):
 
 ```bash
-apptainer pull scanpy_rapids_gpu_v3.sif docker://ericsalomaki/scanpy_rapids_gpu_v3:notebooks26.02-cuda13-py3.13-traj
+apptainer pull ccv_scrnaseq_2026.sif docker://ericsalomaki/scanpy_rapids_gpu_v3:notebooks26.02-cuda13-py3.13-traj
 ```
 
 Note the full path where you save the `.sif` file — you will need it when launching the session.
