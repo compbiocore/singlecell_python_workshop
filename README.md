@@ -46,12 +46,12 @@ This workshop introduces single-cell RNA-seq (scRNA-seq) analysis in Python usin
 
    | Field | Value |
    |---|---|
-   | **Path to apptainer image** | Full path to your `.sif` file, e.g. `/oscar/home/<username>/images/scanpy.sif` |
+   | **Path to apptainer image** | Full path to the apptainer image file (`.sif`) file: `/oscar/data/shared/workshops/ccv_scrnaseq_2026.sif` |
    | **Extra Jupyter Args** | `--notebook-dir=<path/to/cloned/repo>`, e.g. `--notebook-dir=/oscar/home/<username>/singlecell_python_workshop` |
    | **Partition** | Leave blank to use the default partition |
    | **Number of cores** | `1` |
    | **Memory per job** | `50G` |
-   | **Number of GPUs** | `0` (no GPU needed for this workshop) |
+   | **Number of GPUs** | `1` (no GPU used for this workshop, but value must be at least 1) |
    | **Condo account** | Leave blank unless you are using a condo |
    | **Number of hours** | `2` (increase if you need more time) |
    | **Additional Data Path** | Path to any extra data on Oscar you need accessible inside the container, e.g. `/oscar/data/<your-data-dir>` |
