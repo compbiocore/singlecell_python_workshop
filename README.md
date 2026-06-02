@@ -33,7 +33,7 @@ This workshop introduces single-cell RNA-seq (scRNA-seq) analysis in Python usin
    ```bash
    git clone https://github.com/compbiocore/singlecell_python_workshop.git
    ```
-2. **Obtain the Apptainer image** (`.sif` file) — see `notebooks/README.md` for the pull command. Save it to a location on Oscar (e.g. your home or `/oscar/data/` directory). Note the full path — you will need it in the steps below.
+2. **Obtain the Apptainer image** (`.sif` file) — see `notebooks/README.md` for the pull command. For this workshop we are hosting the image on oscar for all attendees at `/oscar/data/shared/workshops/ccv_scrnaseq_2026.sif`.
 
 ### Launching Jupyter via OpenOnDemand
 
